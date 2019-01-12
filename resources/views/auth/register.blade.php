@@ -75,8 +75,21 @@
                             </div>
                         </div>
 
-                        <!-- Newsletter Checkbox - mailing_list -->
-                        <!-- T&Cs Checkbox - terms_agreement -->
+                        <div class="form-group form-check">
+                            <input id="mailing_list" type="checkbox" name="mailing_list" value="1">
+                            <label class="form-check-label" for="mailing_list">{{ __('Sign me up to the mailing list!') }}</label>
+                        </div>
+
+                        <div class="form-group form-check">
+                            <input id="terms_agreement" type="checkbox" name="terms_agreement" value="1" required>
+                            <label class="form-check-label" for="terms_agreement">{{ __('I have read and agree with the') }} <a href="">{{ __('terms and conditions') }}</a> {{ __('and') }} <a href="">{{ __('privacy agreement.') }}</a></label>
+
+                            @if ($errors->has('terms_agreement'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('terms_agreement') }}</strong>
+                                </span>
+                            @endif
+                        </div>
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
