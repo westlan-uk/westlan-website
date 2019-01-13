@@ -20,3 +20,8 @@ Auth::routes();
 
 Route::resource('/users', 'UsersController');
 Route::resource('/roles', 'RolesController');
+Route::resource('/shorturis', 'ShortUrisController');
+
+
+// Check all other routes before, then check Short URIs
+Route::get('/{shortcode}', 'ShortUrisController@go');
