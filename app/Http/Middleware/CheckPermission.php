@@ -20,6 +20,6 @@ class CheckPermission
             return $next($request);
         }
 
-        return response(403);
+        return abort(403);
     }
 }
