@@ -19,6 +19,21 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    @auth
+        <style type="text/css">
+            .menu-dp {
+                display: inline-block;
+                width: 20px;
+                height: 20px;
+                border: 2px solid lightgreen;
+                border-radius: 10px;
+                margin-bottom: -5px;
+                background-color: white;
+                background-image: url('{{ Auth::user()->display_pic }}');
+            }
+        </style>
+    @endauth
 </head>
 <body>
     <div id="app">
@@ -51,7 +66,7 @@
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->username }} <span class="caret"></span>
+                                    <div class="menu-dp"></div>&nbsp; {{ Auth::user()->username }} <span class="caret"></span>
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
