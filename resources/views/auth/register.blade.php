@@ -82,7 +82,7 @@
 
                         <div class="form-group form-check">
                             <input id="terms_agreement" type="checkbox" name="terms_agreement" value="1" required>
-                            <label class="form-check-label" for="terms_agreement">{{ __('I have read and agree with the') }} <a href="">{{ __('terms and conditions') }}</a> {{ __('and') }} <a href="">{{ __('privacy agreement.') }}</a></label>
+                            <label class="form-check-label" for="terms_agreement">{{ __('I have read and agree with the') }} <a href="">{{ __('terms and conditions') }}</a> {{ __('and') }} <a href="">{{ __('privacy agreement') }}</a>.</label>
 
                             @if ($errors->has('terms_agreement'))
                                 <span class="invalid-feedback" role="alert">
