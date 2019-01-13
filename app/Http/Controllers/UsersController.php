@@ -4,9 +4,16 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Input;
 
 class UsersController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,28 +21,30 @@ class UsersController extends Controller
      */
     public function index()
     {
-        //
+        if (!Auth::user()->role->site_admin) {
+            abort(403);
+        }
+
+        $users = User::orderBy('username')->paginate(50);
+
+        return view('users.index', ['users' => $users]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function search()
     {
-        //
-    }
+        if (!Auth::user()->role->site_admin) {
+            abort(403);
+        }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+        $q = Input::get('q');
+
+        $users = User::where('username', 'LIKE', '%' . $q . '%')
+            ->orWhere('email', 'LIKE', '%' . $q . '%')
+            ->orWhere('name', 'LIKE', '%' . $q . '%')
+            ->orderBy('username')
+            ->paginate(50);
+
+        return view('users.index', ['users' => $users]);
     }
 
     /**
@@ -46,7 +55,7 @@ class UsersController extends Controller
      */
     public function show(User $user)
     {
-        //
+        return view('users.show', ['user' => $user]);
     }
 
     /**

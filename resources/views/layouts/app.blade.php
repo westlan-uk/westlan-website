@@ -18,7 +18,9 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
 
     <!-- Styles -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 
     @auth
         <style type="text/css">
@@ -30,7 +32,9 @@
                 border-radius: 10px;
                 margin-bottom: -5px;
                 background-color: white;
-                background-image: url('{{ Auth::user()->display_pic }}');
+                background-image: url('{{ Auth::user()->display_pic ?? '/img/no-dp.png' }}');
+                background-repeat: no-repeat;
+                background-size: contain;
             }
         </style>
     @endauth

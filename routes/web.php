@@ -18,10 +18,14 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::resource('/users', 'UsersController');
+Route::resource('/users', 'UsersController')->except([
+	'create', 'store',
+]);
 Route::resource('/roles', 'RolesController');
 Route::resource('/shorturis', 'ShortUrisController');
 
+// Search Routes
+Route::any('/users/search', 'UsersController@search');
 
 // Check all other routes before, then check Short URIs
 Route::get('/{shortcode}', 'ShortUrisController@go');
