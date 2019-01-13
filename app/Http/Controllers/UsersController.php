@@ -6,6 +6,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
+use Intervention\Image\Facades\Image;
 
 class UsersController extends Controller
 {
@@ -66,7 +67,11 @@ class UsersController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        if (!Auth::user()->role->site_admin && Auth::user()->id !== $user->id) {
+            abort(403);
+        }
+
+        return view('users.edit', ['user' => $user]);
     }
 
     /**
@@ -78,7 +83,26 @@ class UsersController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        $dp = $request->file('display_pic');
+
+        if ($dp !== null) {
+            // Resize to 150x150
+            $resize = Image::make($dp->path())->fit(150, 150)->encode('jpg');
+
+            // Generate hash name
+            $hash = md5($resize->__toString());
+            $path = "img/displayPics/{$hash}.jpg";
+
+            // Save to public folder
+            $resize->save(public_path($path));
+            $url = "/" . $path;
+
+            $user->display_pic = $url;
+        }
+
+        $user->save();
+
+        return redirect('/users/' . $user->id);
     }
 
     /**
