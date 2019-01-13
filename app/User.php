@@ -23,7 +23,8 @@ class User extends Authenticatable
         'dob',
         'mobile',
         'mailing_list',
-        'date_format'
+        'date_format',
+        'display_pic',
     ];
 
     /**

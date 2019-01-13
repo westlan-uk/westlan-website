@@ -30,6 +30,7 @@ class CreateUsersTable extends Migration
             $table->string('date_format')->nullable();
             $table->string('banned_reason')->nullable();
             $table->boolean('site_upgraded')->default(1);
+            $table->string('display_pic')->nullable();
             $table->rememberToken();
             $table->timestamps();
 
