@@ -6,6 +6,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">{{ __('Edit User:') }} {{ $user->username }}</div>
+
                 <div class="card-body">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
@@ -37,6 +38,20 @@
                                     @if ($errors->has('role'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $errors->first('role') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="banned_reason" class="col-md-4 col-form-label text-md-right">{{ __('Ban Reason') }}</label>
+
+                                <div class="col-md-6">
+                                    <input id="banned_reason" type="text" class="form-control{{ $errors->has('banned_reason') ? ' is-invalid' : '' }}" name="banned_reason" value="{{ $user->banned_reason }}">
+
+                                    @if ($errors->has('banned_reason'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('banned_reason') }}</strong>
                                         </span>
                                     @endif
                                 </div>
@@ -83,7 +98,7 @@
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Real Name') }}</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ $user->name }}" required autofocus>
+                                <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ $user->name }}" required>
 
                                 @if ($errors->has('name'))
                                     <span class="invalid-feedback" role="alert">

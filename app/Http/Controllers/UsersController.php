@@ -91,13 +91,14 @@ class UsersController extends Controller
         }
 
         $request->validate([
+            'role' => 'integer',
+            'banned_reason' => 'nullable|string|min:10',
             'display_pic' => 'image|max:1000',
             'username' => 'required|string|max:40|unique:users,username,' . $user->id,
             'name' => 'required|string|max:255',
             'email' => 'required|string|max:191|unique:users,email,' . $user->id,
             'password' => 'nullable|string|min:6|confirmed',
             'mailing_list' => 'boolean',
-            'role' => 'integer',
         ]);
 
         /* Update Display Pic */
@@ -133,11 +134,12 @@ class UsersController extends Controller
         // Set admin-only editable fields
         if (Auth::user()->role->site_admin) {
             $user->role_id = $request->input('role');
+            $user->banned_reason = $request->input('banned_reason');
         }
 
         $user->save();
 
-        return redirect('/users/' . $user->id);
+        return redirect('/users/' . $user->id)->with('status', 'User details updated successfully.');
     }
 
     /**
