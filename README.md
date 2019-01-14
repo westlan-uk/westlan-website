@@ -14,7 +14,7 @@
 #### Features
 - ~~Account Creation~~
 - ~~Account Editing~~
-- User Roles
+- ~~User Roles~~
 - Surveys
 - Short URIs
 - Seating Plans
