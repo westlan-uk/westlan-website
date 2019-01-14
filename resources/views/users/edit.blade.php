@@ -17,12 +17,121 @@
                         @method('PUT')
                         @csrf
 
-                        <div class="form-group row">
+                        @if (Auth::user()->role->site_admin)
+                            <div cass="row">
+                                <div class="offset-md-4 col-md-6">
+                                    <h4>{{ __('Site Admin Only') }}</h4>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="role" class="col-md-4 col-form-label text-md-right">{{ __('Role') }}</label>
+
+                                <div class="col-md-6">
+                                    <select class="form-control{{ $errors->has('role') ? ' is-invalid' : '' }}" name="role">
+                                        @foreach ($roles as $role)
+                                            <option value="{{ $role->id }}">{{ $role->name }}</option>
+                                        @endforeach
+                                    </select>
+
+                                    @if ($errors->has('role'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('role') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <hr>
+                        @endif
+
+                        <div class="form-group row mb-0">
                             <label class="col-md-4 col-form-label text-md-right">{{ __('Display Picture') }}</label>
 
                             <div class="col-md-6">
-                                <input type="file" name="display_pic">
+                                <input class="form-control{{ $errors->has('display_pic') ? ' is-invalid' : '' }}" type="file" name="display_pic">
+
+                                @if ($errors->has('display_pic'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('display_pic') }}</strong>
+                                    </span>
+                                @endif
                             </div>
+                        </div>
+
+                        <div class="form-group row mt-0">
+                            <div class="offset-md-4 col-md-6">
+                                <small>{{ __('150 x 150px recommended - 1MB maximum filesize') }}</small>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('Username') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="username" type="text" class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" name="username" value="{{ $user->username }}" required autofocus>
+
+                                @if ($errors->has('username'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('username') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Real Name') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ $user->name }}" required autofocus>
+
+                                @if ($errors->has('name'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('name') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ $user->email }}" required>
+
+                                @if ($errors->has('email'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password">
+
+                                @if ($errors->has('password'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation">
+                            </div>
+                        </div>
+
+                        <div class="form-group form-check offset-md-4 col-md-6">
+                            <input id="mailing_list" type="checkbox" name="mailing_list" value="1" {{ $user->mailing_list ? 'checked' : '' }}>
+                            <label class="form-check-label" for="mailing_list">{{ __('Sign me up to the mailing list!') }}</label>
                         </div>
 
                         <div class="form-group row mb-0">

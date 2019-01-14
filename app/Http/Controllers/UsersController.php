@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Role;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -71,7 +72,9 @@ class UsersController extends Controller
             abort(403);
         }
 
-        return view('users.edit', ['user' => $user]);
+        $roles = Role::get();
+
+        return view('users.edit', ['user' => $user, 'roles' => $roles]);
     }
 
     /**
@@ -83,6 +86,21 @@ class UsersController extends Controller
      */
     public function update(Request $request, User $user)
     {
+        if (!Auth::user()->role->site_admin && Auth::user()->id !== $user->id) {
+            abort(403);
+        }
+
+        $request->validate([
+            'display_pic' => 'image|max:1000',
+            'username' => 'required|string|max:40|unique:users,username,' . $user->id,
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|max:191|unique:users,email,' . $user->id,
+            'password' => 'nullable|string|min:6|confirmed',
+            'mailing_list' => 'boolean',
+            'role' => 'integer',
+        ]);
+
+        /* Update Display Pic */
         $dp = $request->file('display_pic');
 
         if ($dp !== null) {
@@ -100,6 +118,23 @@ class UsersController extends Controller
             $user->display_pic = $url;
         }
 
+        $user->username = $request->input('username');
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->mailing_list = $request->input('mailing_list') ?? false;
+
+        /* Save password if changed */
+        $password = $request->input('password') ?? null;
+
+        if ($password !== null) {
+            $user->password = Hash::make($password);
+        }
+
+        // Set admin-only editable fields
+        if (Auth::user()->role->site_admin) {
+            $user->role_id = $request->input('role');
+        }
+
         $user->save();
 
         return redirect('/users/' . $user->id);
@@ -113,6 +148,9 @@ class UsersController extends Controller
      */
     public function destroy(User $user)
     {
+        if (!Auth::user()->role->site_admin) {
+            abort(403);
+        }
         //
     }
 }

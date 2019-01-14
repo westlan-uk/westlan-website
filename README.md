@@ -12,8 +12,8 @@
 #
 
 #### Features
-- Account Creation
-- Account Editing
+- ~~ Account Creation ~~
+- ~~ Account Editing ~~
 - User Roles
 - Surveys
 - Short URIs
