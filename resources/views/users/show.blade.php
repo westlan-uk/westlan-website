@@ -21,7 +21,7 @@
                             <h1>{{ $user->username }}</h1>
 
                             @if (Auth::user()->role->site_admin || Auth::user()->id === $user->id)
-                                <a href="{{ url('/users/' . $user->id . '/edit') }}">Edit Profile</a>
+                                <a href="{{ url('/users/' . $user->id . '/edit') }}">{{ __('Edit Profile') }}</a>
                             @endif
 
                             <p>This person has attended lots of LANs.<br />
