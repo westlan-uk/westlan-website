@@ -16,18 +16,18 @@
                         </div>
                     @endif
 
-                    <p><a class="btn btn-primary" href="{{ url('/roles/' . $role->id . '/edit') }}">{{ __('Edit Role') }}</a></p>
+                    <p><a class="btn btn-primary" href="{{ url('/roles/' . $role->id . '/edit') }}">Edit Role</a></p>
 
-                    <h4>{{ __('Existing Users') }}</h4>
+                    <h4>Existing Users</h4>
                     <table class="table table-striped table-responsive-md table-sm">
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">{{ __('Username') }}</th>
-                                <th scope="col">{{ __('Name') }}</th>
-                                <th scope="col">{{ __('E-Mail') }}</th>
-                                <th scope="col">{{ __('Last Login') }}</th>
-                                <th scope="col">{{ __('Registered') }}</th>
+                                <th scope="col">Username</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">E-Mail</th>
+                                <th scope="col">Last Login</th>
+                                <th scope="col">Registered</th>
                                 <th scope="col"></th>
                             </tr>
                         </thead>
@@ -40,7 +40,7 @@
                                     <td>{{ $user->email }}</td>
                                     <td>{{ $user->last_login }}</td>
                                     <td>{{ $user->created_at }}</td>
-                                    <td><a class="btn btn-primary btn-sm table-btn-sm" href="{{ url('/users/' . $user->id) }}">{{ __('View') }}</a></td>
+                                    <td><a class="btn btn-primary btn-sm table-btn-sm" href="{{ url('/users/' . $user->id) }}">View</a></td>
                                 </tr>
                             @endforeach
                         </tbody>

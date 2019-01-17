@@ -29,17 +29,17 @@
                         </div>
                     </form>
 
-                    <p class="mt-3">{{ __('Displaying') . ' ' . $users->count() . ' ' . __('of') . ' ' . $users->total() . ' ' . __('results') }}.</p>
+                    <p class="mt-3">Displaying {{ $users->count() }} of {{ $users->total() }} results.</p>
 
                     <table class="table table-striped table-responsive-md table-sm">
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">{{ __('Username') }}</th>
-                                <th scope="col">{{ __('Name') }}</th>
-                                <th scope="col">{{ __('E-Mail') }}</th>
-                                <th scope="col">{{ __('Last Login') }}</th>
-                                <th scope="col">{{ __('Registered') }}</th>
+                                <th scope="col">Username</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">E-Mail</th>
+                                <th scope="col">Last Login</th>
+                                <th scope="col">Registered</th>
                                 <th scope="col"></th>
                             </tr>
                         </thead>
@@ -52,7 +52,7 @@
                                     <td>{{ $user->email }}</td>
                                     <td>{{ $user->last_login }}</td>
                                     <td>{{ $user->created_at }}</td>
-                                    <td><a class="btn btn-primary btn-sm table-btn-sm" href="{{ url('/users/' . $user->id) }}">{{ __('View') }}</a></td>
+                                    <td><a class="btn btn-primary btn-sm table-btn-sm" href="{{ url('/users/' . $user->id) }}">View</a></td>
                                 </tr>
                             @endforeach
                         </tbody>

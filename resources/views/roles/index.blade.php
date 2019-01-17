@@ -6,7 +6,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="mb-0">{{ __('Roles') }}</h3>
+                    <h3 class="mb-0">Roles</h3>
                 </div>
 
                 <div class="card-body">
@@ -20,8 +20,8 @@
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">{{ __('Name') }}</th>
-                                <th scope="col">{{ __('Members') }}</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Members</th>
                                 <th scope="col"></th>
                             </tr>
                         </thead>
@@ -31,7 +31,7 @@
                                     <th scope="row">{{ $role->id }}</th>
                                     <td>{{ $role->name }}</td>
                                     <td>{{ $role->users->count() }}</td>
-                                    <td><a class="btn btn-primary btn-sm table-btn-sm" href="{{ url('/roles/' . $role->id) }}">{{ __('View') }}</a></td>
+                                    <td><a class="btn btn-primary btn-sm table-btn-sm" href="{{ url('/roles/' . $role->id) }}">View</a></td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -41,15 +41,15 @@
 
             <div class="card mt-4">
                 <div class="card-body">
-                    <h5 class="card-title">{{ __('Add New Role') }}</h5>
+                    <h5 class="card-title">Add New Role</h5>
 
                     <form class="form-inline" method="POST" action="{{ url('/roles') }}">
                         @csrf
 
-                        <label class="sr-only" for="name">{{ __('Name') }}</label>
-                        <input class="form-control mb-2 mr-sm-2{{ $errors->has('name') ? ' is-invalid' : '' }}" type="text" name="name" value="{{ old('name') }}" placeholder="{{ __('Name') }}">
+                        <label class="sr-only" for="name">Name</label>
+                        <input class="form-control mb-2 mr-sm-2{{ $errors->has('name') ? ' is-invalid' : '' }}" type="text" name="name" value="{{ old('name') }}" placeholder="Name">
 
-                        <button class="btn btn-primary mb-2" type="submit">{{ __('Add') }}</button>
+                        <button class="btn btn-primary mb-2" type="submit">Add</button>
 
                         @if ($errors->has('name'))
                             <span class="invalid-feedback" role="alert">
