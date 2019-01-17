@@ -29,6 +29,10 @@ Route::resource('/roles', 'RolesController')->except([
     'create',
 ]);
 
+Route::resource('/surveys', 'SurveysController');
+Route::get('/surveys/{survey}/clear', 'SurveysController@clearVote');
+Route::get('/surveys/{survey}/vote/{survey_option}', 'SurveysController@vote');
+
 Route::resource('/shorturis', 'ShortUrisController');
 
 
