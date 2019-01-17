@@ -15,7 +15,7 @@
 - ~~Account Creation~~
 - ~~Account Editing~~
 - ~~User Roles~~
-- Surveys
+- ~~Surveys~~
 - Short URIs
 - Seating Plans
 - Seat Selection

@@ -12,7 +12,10 @@ class SurveysController extends Controller
 {
     public function __construct()
     {
-        return $this->middleware('auth');
+        $this->middleware('auth');
+        $this->middleware('check-permission:site_admin')->except([
+            'show', 'vote', 'clearVote'
+        ]);
     }
 
     /**
@@ -22,10 +25,6 @@ class SurveysController extends Controller
      */
     public function index()
     {
-        if (!Auth::user()->role->site_admin) {
-            abort(403);
-        }
-
         return view('surveys.index', [
             'surveys' => Survey::get()
         ]);
@@ -38,10 +37,6 @@ class SurveysController extends Controller
      */
     public function create()
     {
-        if (!Auth::user()->role->site_admin) {
-            abort(403);
-        }
-
         return view('surveys.create');
     }
 
@@ -136,10 +131,6 @@ class SurveysController extends Controller
      */
     public function update(Request $request, Survey $survey)
     {
-        if (!Auth::user()->role->site_admin) {
-            abort(403);
-        }
-
         $request->validate([
             'name' => 'required|string',
             'option.*' => 'required|string',
@@ -185,9 +176,6 @@ class SurveysController extends Controller
      */
     public function destroy(Survey $survey)
     {
-        if (!Auth::user()->role->site_admin) {
-            abort(403);
-        }
         //
     }
 }
