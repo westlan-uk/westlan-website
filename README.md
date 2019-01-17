@@ -16,7 +16,7 @@
 - ~~Account Editing~~
 - ~~User Roles~~
 - ~~Surveys~~
-- Short URIs
+- ~~Short URIs~~
 - Seating Plans
 - Seat Selection
 - Categories

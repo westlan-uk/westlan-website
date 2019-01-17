@@ -34,6 +34,7 @@ Route::get('/surveys/{survey}/clear', 'SurveysController@clearVote');
 Route::get('/surveys/{survey}/vote/{survey_option}', 'SurveysController@vote');
 
 Route::resource('/shorturis', 'ShortUrisController');
+Route::get('/shorturis/{shorturi}/reset', 'ShortUrisController@resetClicked');
 
 
 // Search Routes

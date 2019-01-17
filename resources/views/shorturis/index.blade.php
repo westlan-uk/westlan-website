@@ -6,7 +6,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="mb-0">Surveys</h3>
+                    <h3 class="mb-0">Short URIs</h3>
                 </div>
 
                 <div class="card-body">
@@ -18,7 +18,7 @@
 
                     <div class="form-group row">
                         <div class="col-md-12">
-                            <a class="btn btn-success" href="{{ url('/surveys/create') }}">Add Survey</a>
+                            <a class="btn btn-success" href="{{ url('/shorturis/create') }}">Add Short URI</a>
                         </div>
                     </div>
 
@@ -27,17 +27,21 @@
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Name</th>
-                                <th scope="col">Votes</th>
+                                <th scope="col">Shortcode</th>
+                                <th scope="col">Clicked</th>
+                                <th scope="col">Created</th>
                                 <th scope="col"></th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($surveys as $survey)
+                            @foreach ($shorturis as $shorturi)
                                 <tr>
-                                    <th scope="row">{{ $survey->id }}</th>
-                                    <td>{{ $survey->name }}</td>
-                                    <td>{{ $survey->votes->count() }}</td>
-                                    <td><a class="btn btn-primary btn-sm table-btn-sm" href="{{ url('/surveys/' . $survey->id) }}">View</a></td>
+                                    <th scope="row">{{ $shorturi->id }}</th>
+                                    <td>{{ $shorturi->name }}</td>
+                                    <td>{{ $shorturi->shortcode }}</td>
+                                    <td>{{ $shorturi->clicked }}</td>
+                                    <td>{{ $shorturi->created_at }}</td>
+                                    <td><a class="btn btn-primary btn-sm table-btn-sm" href="{{ url('/shorturis/' . $shorturi->id) }}">View</a></td>
                                 </tr>
                             @endforeach
                         </tbody>
