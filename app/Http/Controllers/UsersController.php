@@ -14,6 +14,9 @@ class UsersController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('check-permission:site_admin')->except([
+            'show', 'edit', 'update',
+        ]);
     }
 
     /**
@@ -23,10 +26,6 @@ class UsersController extends Controller
      */
     public function index()
     {
-        if (!Auth::user()->role->site_admin) {
-            abort(403);
-        }
-
         $users = User::orderBy('username')->paginate(50);
 
         return view('users.index', ['users' => $users]);
@@ -34,10 +33,6 @@ class UsersController extends Controller
 
     public function search()
     {
-        if (!Auth::user()->role->site_admin) {
-            abort(403);
-        }
-
         $q = Input::get('q');
 
         $users = User::where('username', 'LIKE', '%' . $q . '%')
