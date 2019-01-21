@@ -67,20 +67,6 @@ class ShortUrisController extends Controller
         return view('shorturis.show', ['shorturi' => $shorturi]);
     }
 
-    public function go($shortcode)
-    {
-        $shortUri = ShortUri::where('shortcode', $shortcode)->first();
-
-        if (isset($shortUri->uri)) {
-            $shortUri->clicked++;
-            $shortUri->save();
-
-            return redirect($shortUri->uri);
-        } else {
-            return abort(404);
-        }
-    }
-
     public function resetClicked(ShortUri $shorturi)
     {
         $shorturi->clicked = 0;

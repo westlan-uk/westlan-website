@@ -22,7 +22,7 @@ Auth::routes();
 
 // Resource Routes
 Route::resource('/users', 'UsersController')->except([
-	'create', 'store',
+    'create', 'store',
 ]);
 
 Route::resource('/roles', 'RolesController')->except([
@@ -46,5 +46,5 @@ Route::post('/staticpages/upload', 'StaticPagesController@upload');
 Route::any('/users/search', 'UsersController@search');
 
 
-// Check all other routes before, then check Short URIs
-Route::get('/{shortcode}', 'ShortUrisController@go');
+// Custom Wildcards
+Route::get('/{link}', 'WildcardsController');
