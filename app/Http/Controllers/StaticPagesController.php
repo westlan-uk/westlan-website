@@ -61,8 +61,6 @@ class StaticPagesController extends Controller
 
     public function upload(Request $request)
     {
-        //
-
         $request->validate([
             'upload' => 'image',
         ]);
