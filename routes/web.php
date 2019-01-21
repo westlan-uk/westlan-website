@@ -36,6 +36,11 @@ Route::get('/surveys/{survey}/vote/{survey_option}', 'SurveysController@vote');
 Route::resource('/shorturis', 'ShortUrisController');
 Route::get('/shorturis/{shorturi}/reset', 'ShortUrisController@resetClicked');
 
+Route::resource('/staticpages', 'StaticPagesController')->except([
+    'show',
+]);
+Route::post('/staticpages/upload', 'StaticPagesController@upload');
+
 
 // Search Routes
 Route::any('/users/search', 'UsersController@search');

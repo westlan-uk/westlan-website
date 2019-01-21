@@ -19,6 +19,8 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 
+    @yield('css')
+
     @auth
         <style type="text/css">
             .menu-dp {
