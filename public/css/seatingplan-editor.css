@@ -1,0 +1,57 @@
+.seat-layout td {
+    width: 40px;
+    height: 40px;
+}
+
+.seat-number {
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    vertical-align: middle;
+}
+
+/* Single Table */
+td.table .seat-number {
+    background-color: lightblue;
+    border: 2px solid black;
+}
+
+/* Double Table */
+td.dbl-table-1 .seat-number {
+    background-color: lightblue;
+    border-bottom: 2px solid black;
+    border-left: 2px solid black;
+    border-top: 2px solid black;
+}
+
+td.dbl-table-2 .seat-number {
+    background-color: lightblue;
+    border-left: 2px solid black;
+    border-top: 2px solid black;
+    border-right: 2px solid black;
+}
+
+td.dbl-table-3 .seat-number {
+    background-color: lightblue;
+    border-top: 2px solid black;
+    border-right: 2px solid black;
+    border-bottom: 2px solid black;
+}
+
+td.dbl-table-4 .seat-number {
+    background-color: lightblue;
+    border-right: 2px solid black;
+    border-bottom: 2px solid black;
+    border-left: 2px solid black;
+}
+
+/* Other */
+td.other .seat-number {
+    background-color: black;
+}
+
+td.other .seat-number {
+    color: white;
+}
+
+
